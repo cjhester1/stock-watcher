@@ -1,28 +1,63 @@
-##Stock Watcher### 
+Stock Price Monitor
+This project monitors stock price changes and sends news alerts if significant changes are detected. It uses the Alpha Vantage API for stock prices, the News API for fetching news articles, and the Twilio API for sending SMS notifications.
 
-Flow Chart of program
+Requirements
 
-#1. - Get yesterday's closing stock price. I used list comprehensions on Python dictionaries. e.g. [new_value for (key, value) in dictionary.items()]
+Python 3
+Requests library (pip install requests)
+Twilio library (pip install twilio)
 
-#2. - Get the day before yesterday's closing stock price
+Setup
+Alpha Vantage API Key: Sign up at Alpha Vantage to get your API key.
+News API Key: Sign up at News API to get your API key.
+Twilio Account: Sign up at Twilio to get your account SID, auth token, and phone number.
 
-#3. - Find the positive difference between 1 (yesterday) and 2 (day before yesterday).
+Configuration
 
-#4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
+Create a config.py file with the following content:
 
-#5. -  TEST --> If percent difference is greater than 5 then print("Get News").
+ALPHA_VANTAGE_API_KEY = 'your_alpha_vantage_api_key'
+NEWS_API_KEY = 'your_news_api_key'
+TWILIO_ACCOUNT_SID = 'your_twilio_account_sid'
+TWILIO_AUTH_TOKEN = 'your_twilio_auth_token'
+TWILIO_PHONE_NUMBER = 'your_twilio_phone_number'
+TO_PHONE_NUMBER = 'your_phone_number'
+COMPANY_NAME = 'your_company_name'
+STOCK_SYMBOL = 'your_stock_symbol'
 
-    ## STEP 2: https://newsapi.org/ 
-    # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
+Steps
 
-#6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
+STEP 1: Stock Price Monitoring
+Get Yesterday's Closing Stock Price:
 
-#7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
+Use the Alpha Vantage API to get the daily stock prices.
+Extract the closing price for yesterday.
 
+Get Day Before Yesterday's Closing Stock Price:
+Extract the closing price for the day before yesterday.
 
-    ## STEP 3: Use twilio.com/docs/sms/quickstart/python
-    #to send a separate message with each article's title and description to your phone number. 
+Calculate the Difference:
+Find the positive difference between the two closing prices.
 
-#8. - Create a new list of the first 3 article's headline and description using list comprehension.
+Calculate the Percentage Difference:
+Calculate the percentage difference between the two closing prices.
 
-#9. - Send each article as a separate message via Twilio. 
+Check for Significant Change:
+
+If the percentage difference is greater than 5%, proceed to get news.
+
+STEP 2: Fetch News Articles
+
+Get News Articles:
+Use the News API to get the latest news articles related to the company.
+
+Select Top 3 Articles:
+Use Python's slice operator to get the first 3 articles.
+
+STEP 3: Send SMS Notifications
+
+Prepare Messages:
+Create a list of messages with the article headlines and descriptions.
+
+Send Messages via Twilio:
+Use the Twilio API to send each article as a separate SMS message.
