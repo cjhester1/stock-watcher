@@ -25,7 +25,7 @@ TWILIO_AUTH_TOKEN = 'your_twilio_auth_token'
 TWILIO_PHONE_NUMBER = 'your_twilio_phone_number'
 TO_PHONE_NUMBER = 'your_phone_number'
 COMPANY_NAME = 'your_company_name'
-STOCK_SYMBOL = 'your_stock_symbol'
+STOCK_NAME = 'your_stock_name'
 ```
 
 #### 📋 Steps
