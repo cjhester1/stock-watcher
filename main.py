@@ -14,7 +14,7 @@ stock_params = {
 }
 #testing API response
 response = requests.get(STOCK_ENDPOINT, params=stock_params)
-data = response.json()
+data = response.json()["Time Series (Daily)"]
 print(data)
 """
 date is the key  in 'Time series (daily)', we need a way to be able to iterate to the next
